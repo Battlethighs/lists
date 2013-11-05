@@ -20,7 +20,11 @@ public class MyLinkedList<E> {
 	}
 	
 	public E get(int i) {
-		return null;
+        MyLinkedNode<E> location = head;
+		for(int j=0 ;j <=i; j++){
+            location = location.getNext();
+        }
+        return location.getValue();
 	}
 	
 	public void add(E s) {
@@ -35,6 +39,21 @@ public class MyLinkedList<E> {
 	}
 	
 	public void add(int i, E s) {
+        MyLinkedNode<E> begin = head;
+        MyLinkedNode<E> location = begin;
+
+        for (int j = 0; j < i; j++){
+            location = location.getNext();
+        }
+        MyLinkedNode prev = location;
+        MyLinkedNode next = location.getNext();
+        MyLinkedNode newNode = new MyLinkedNode(s);
+
+        prev.setNext(newNode);
+        newNode.setPrev(prev);
+        newNode.setNext(next);
+        next.setPrev(newNode);
+        numElements ++;
 	}
 	
 	public int size() {
